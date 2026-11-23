@@ -1,0 +1,45 @@
+% !TeX program = xelatex
+\documentclass[UTF8,fontset=fandol,11pt,a4paper]{ctexart}
+\setCJKmonofont{FandolHei-Regular}[Extension=.otf]
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs,tabularx,enumitem,xcolor,xurl,hyperref}
+\usepackage{arydshln} % 表格虚线
+\usepackage{float}    % 强制固定位置 [H]
+\usepackage{caption}  
+
+% ================= 参考文献配置 =================
+\usepackage[backend=biber, style=gb7714-2015]{biblatex}
+\addbibresource{refs.bib} % 确保你的 bib 文件名为 refs.bib
+% ================================================
+
+\captionsetup[table]{skip=2pt, font=small}
+
+% 压缩浮动体上下的默认巨大空白
+\setlength{\intextsep}{0pt}
+\setlength{\textfloatsep}{0pt}
+
+\definecolor{accent}{HTML}{1B526C}
+\hypersetup{colorlinks=true,urlcolor=accent,citecolor=accent,linkcolor=accent}
+\pagestyle{plain}
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\linespread{1.10}
+\setlist[itemize]{leftmargin=1.5em,itemsep=4pt,topsep=3pt}
+\ctexset{section={format=\large\bfseries\color{accent},beforeskip=13pt,afterskip=5pt}}
+
+\title{HGNNStudy：超图节点分类复现笔记}
+\author{姓名：\underline{\hspace{1cm}刘思凯\hspace{1cm}}}\date{}
+
+\begin{document}
+\maketitle
+\vspace{-1.4em}
+% ==================== 正文章节（各自独立文件） ====================
+\input{task_1_Reproduction}
+\clearpage
+\input{task_2_Data}
+\input{task_3_Baseline}
+\input{task_4_info}
+
+% ==================== 参考文献列表 ====================
+\printbibliography[title=参考文献]
+
+\end{document}

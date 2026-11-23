@@ -1,0 +1,38 @@
+% task2.tex —— Task 2：数据集统计信息（由主文件 Reproduction.tex 引入，请勿单独编译）
+
+\section*{Task 2：数据集统计信息}
+\par
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.2} 
+    \begin{tabular}{lccccc}
+        \toprule
+        数据集 & 节点数 & 超边数 & 特征维度 & 类别数 & 平均超边大小 \\
+        \midrule
+        
+        % =========== 第一组 ===========
+        Cora & 2,708 & 1,579 & 1,433 & 7 & 3.03 \\
+        Pubmed & 19,717 & 7,963 & 500 & 3 & 4.35 \\
+        Cora-CA & 2,708 & 1,072 & 1,433 & 7 & 4.28 \\
+        DBLP-CA & 41,302 & 22,363 & 1,425 & 6 & 4.45 \\
+        NTU2012 & 2,012 & 2,012 & 100 & 67 & 5.00 \\
+        ModelNet40 & 12,311 & 12,311 & 100 & 40 & 5.00 \\
+        Walmart & 88,860 & 69,906 & 11 & 11 & 6.59 \\
+        Trivago & 172,738 & 233,202 & 300 & 160 & 3.12 \\
+        
+        \midrule % 根据截图添加的分隔线
+        
+        % =========== 第二组 ===========
+        Actor & 16,255 & 10,164 & 50 & 3 & 5.25 \\
+        Ratings & 22,299 & 2,090 & 111 & 5 & 3.10 \\
+        Gamers & 16,812 & 2,627 & 7 & 2 & 6.23 \\
+        Pokec & 14,998 & 2,406 & 65 & 2 & 2.29 \\
+        Yelp & 50,758 & 679,302 & 1,862 & 9 & 6.66 \\
+        
+        \bottomrule
+    \end{tabular}
+    
+    \vspace{0.8em} 
+    \par\noindent 注：Walmart共有11个类别，使用one-hot编码之后会扩充到100维
+\end{table}
+\par

@@ -1,0 +1,34 @@
+% task3.tex —— Task 3：baseline 方法介绍（由主文件 Reproduction.tex 引入，请勿单独编译）
+
+\section*{Task 3：baseline 方法介绍}
+\begin{itemize}
+    \item \textbf{MLP}：多层感知机，不利用任何超图结构信息，仅对节点特征做逐层非线性变换，作为衡量结构信息是否带来增益的最基础基线。
+    \item \textbf{CEGCN}\cite{chien2022you,zhou2006learning,kipf2017semi}：基于团展开（clique expansion）的方法，先把每条超边转换为其关联节点上的一个团，从而将超图变成成对图，再在展开后的图上应用 GCN 进行节点表示学习。
+    \item \textbf{CEGAT}\cite{chien2022you,zhou2006learning,velickovic2018graph}：同样基于团展开把超图转为成对图，但使用 GAT（图注意力网络）建模团内节点之间的重要性权重，以区分不同邻居的贡献。
+    
+    \vspace{0.5em} % 虚线分组
+    
+    \item \textbf{HGNN}\cite{feng2019hypergraph}：将谱卷积扩展到超图，利用超图拉普拉斯并用截断 Chebyshev 多项式近似谱滤波器，从而捕捉复杂数据中的高阶关联。
+    \item \textbf{HyperGCN}\cite{yadati2019hypergcn}：用连接超边内顶点的成对边来近似每条超边，把超图学习转化为近似图上的图学习任务。
+    \item \textbf{HCHA}\cite{bai2021hypergraph}：提出端到端可训练的超图卷积和超图注意力算子；卷积利用高阶关系与局部聚类结构传播信息，注意力动态调整超边连接以聚合任务相关信息。
+    \item \textbf{LEGCN}\cite{yang2022semi}：基于线膨胀（Line Expansion），把“顶点–超边”对建模为简单图中的节点，从而将超图双射地转换为简单图，使现有图学习算法可直接用于超图且不丢失对称共现结构。
+    \item \textbf{HyperND}\cite{prokopchik2022nonlinear}：在超图上构造非线性扩散过程，使特征和标签沿超图结构传播；扩散包含多种非线性以增强建模能力，其极限点作为节点嵌入并用线性模型预测。
+    \item \textbf{PhenomNN}\cite{wang2023from}：基于一类表达力强的参数化超图正则化能量函数，把节点嵌入定义为这些能量函数的极小点，并与参数化分类器通过有监督双层优化联合训练。
+    \item \textbf{SheafHyperGNN}\cite{duta2023sheaf}：为超图引入胞腔层（cellular sheaf）框架，在保持高阶连通性的同时建模复杂动态；将常用超图拉普拉斯推广到含层结构的版本，并构造两个能推断和处理超图层结构的神经网络。
+    \item \textbf{HJRL}\cite{yan2024hypergraph}：提出交叉展开方法，把超顶点和超边都转换为标准图中的顶点，并在共享表示空间联合嵌入二者；同时用超图重建目标保留结构信息。
+    \item \textbf{DPHGNN}\cite{saxena2024dphgnn}：面向资源受限超图场景的混合框架，引入等变算子学习以捕捉低阶语义；采用静态更新层提供谱偏置和关系特征，动态更新层把显式聚合特征融合进超图消息传递。
+    \item \textbf{TF-HNN}\cite{tang2025training}：首个将超图结构处理与模型训练解耦的模型，提出免训练的消息传递模块 TF-MP-Module；该模块去除可学习参数和非线性激活，把多层传播压缩为单步，以提高训练效率。
+    
+    \vspace{0.5em} % 虚线分组
+    
+    \item \textbf{HNHN}\cite{dong2020hnhn}：在超节点和超边上都使用非线性激活的超图卷积网络，并配合归一化方案，可根据数据集灵活调整高阶超边和高 degree 顶点的重要性。
+    \item \textbf{UniGNN}\cite{huang2021unignn}：统一的消息传递框架，把标准 GNN 推广到超图；先用置换不变函数聚合关联顶点得到超边表示，再聚合关联超边表示更新每个顶点。
+    \item \textbf{AllSetTransformer}\cite{chien2022you,lee2019set}：把每一层实现为两个多重集函数的组合，并引入 Set Transformer，从而获得更强的建模灵活性和表达力。
+    \item \textbf{ED-HNN}\cite{wang2023equivariant}：设计用于逼近任意连续、置换等变超图扩散算子的架构；通过星形展开（二部图表示）结合标准消息传递神经网络实现，并支持跨层共享权重的可扩展训练。
+    \item \textbf{HyperGT}\cite{liu2024hypergraph}：基于 Transformer 的 HNN，用于捕捉节点与超边之间的全局关联；引入基于关联矩阵的位置编码和结构正则项以保留局部结构信息，联合建模全局交互与局部连接模式。
+    
+    \vspace{0.5em} % 虚线分组
+    
+    \item \textbf{EHNN}\cite{kim2022equivariant}：首个实现通用超图等变 GNN 的框架；建立稀疏超图与稠密固定阶张量之间的联系，设计最大表达力的等变线性层，并通过超网络参数共享保证可扩展性和对任意超边阶数的泛化。
+    \item \textbf{T-HyperGNN}\cite{wang2024thypergnns,pena2023thgsp}：集成张量超图信号处理（t-HGSP），用张量编码超图结构；通过乘法交互张量建模节点交互，把聚合从线性操作提升为高阶多项式映射，并利用张量稀疏性实现高效张量消息传递。
+\end{itemize}

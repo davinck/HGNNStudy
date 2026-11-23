@@ -1,0 +1,48 @@
+# =============================================================================
+# DHG-Bench 节点分类复现环境依赖
+#   实测环境：Windows 11 + NVIDIA RTX 3060 Laptop (6 GB) + Python 3.10.22
+#   用法：    pip install -r requirements.txt
+# -----------------------------------------------------------------------------
+# 三个必须注意的点：
+#
+#   1) torch 必须装 CUDA 版（2.2.2+cu121）。PyPI 与清华镜像上的 Windows
+#      torch==2.2.2 是 CPU-only 包（约 198 MB），装完 torch.cuda.is_available()
+#      返回 False。CUDA 版（2.45 GB）只在 PyTorch 官方 wheel 索引上，
+#      所以下面用 --extra-index-url 指过去。
+#
+#   2) torch_scatter / torch_sparse 没有发布到 PyPI，只有 data.pyg.org 上的
+#      预编译轮子，所以用 -f（find-links）指定。注意索引目录名是
+#      torch-2.2.0+cu121（不是 2.2.2），pt22cu121 的轮子对 2.2.2 二进制兼容。
+#
+#   3) numpy 必须锁 1.24.x。numpy 2.x 下 torch 2.2.2 会报
+#      "Failed to initialize NumPy: _ARRAY_API not found"。
+#
+# -----------------------------------------------------------------------------
+# 国内网络慢时的替代装法（官方源实测约 200 KB/s，SJTU 镜像可达 4-5 MB/s）：
+#
+#   curl -L -C - -o torch-2.2.2+cu121-cp310-cp310-win_amd64.whl \
+#     "https://mirror.sjtu.edu.cn/pytorch-wheels/cu121/torch-2.2.2%2Bcu121-cp310-cp310-win_amd64.whl"
+#   pip install torch-2.2.2+cu121-cp310-cp310-win_amd64.whl
+#
+#   装完后把下面的 --extra-index-url 与 torch== 两行注释掉，再执行本文件即可。
+# =============================================================================
+
+--extra-index-url https://download.pytorch.org/whl/cu121
+-f https://data.pyg.org/whl/torch-2.2.0+cu121.html
+
+# ---- 深度学习框架与超图算子 ----
+torch==2.2.2+cu121
+torch_scatter==2.1.2+pt22cu121
+torch_sparse==0.6.18+pt22cu121
+torch-geometric==2.6.1
+
+# ---- 数值计算与数据处理 ----
+numpy==1.24.3
+scipy==1.15.3
+scikit-learn==1.7.2
+pandas==2.3.3
+
+# ---- 配置读取与训练辅助 ----
+PyYAML==6.0.3
+dask==2026.8.0
+tqdm==4.70.1

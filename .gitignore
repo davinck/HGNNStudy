@@ -1,0 +1,22 @@
+# 数据与缓存
+DHG-Bench/data/
+!DHG-Bench/data/README.md
+
+# 运行产物
+*.pt
+*.pyc
+__pycache__/
+logs/
+
+# LaTeX 中间文件
+Result/*.aux
+Result/*.bbl
+Result/*.bcf
+Result/*.blg
+Result/*.fdb_latexmk
+Result/*.fls
+Result/*.log
+Result/*.out
+Result/*.run.xml
+Result/*.synctex.gz
+Result/*.xdv
