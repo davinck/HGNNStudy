@@ -51,7 +51,7 @@
 
 ## 1. 环境安装与数据集下载
 
-本机实测环境：Windows 11 + NVIDIA GeForce RTX 3060 Laptop（6 GB）+ 驱动 617.42，Python 3.10.22 / PyTorch 2.2.2+cu121 / PyTorch Geometric 2.6.1。安装顺序不能换，下面按四步写完，最后给出装好后的完整包清单。
+本机实测环境：Windows 11 + NVIDIA GeForce RTX 3080Ti（16 GB）+ 驱动 617.42，Python 3.10.22 / PyTorch 2.2.2+cu121 / PyTorch Geometric 2.6.1。安装顺序不能换，下面按四步写完，最后给出装好后的完整包清单。
 
 ### 1.1 配置环境
 
@@ -83,7 +83,7 @@ cd DHG-Bench/dhgbench && python -c "from lib_utils.exp_agent import ExpAgent; pr
 
 期望输出：
 ```
-2.2.2+cu121 True NVIDIA GeForce RTX 3060 Laptop GPU
+2.2.2+cu121 True NVIDIA GeForce RTX 3080Ti GPU
 pyg-ext ok
 2.6.1 1.24.3
 project ok

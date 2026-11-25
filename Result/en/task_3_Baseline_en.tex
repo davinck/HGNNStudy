@@ -1,0 +1,34 @@
+% task3_en.tex -- Task 3: Baseline Methods (included by main_en.tex; do not compile standalone)
+
+\section*{Task 3: Baseline Methods}
+\begin{itemize}
+    \item \textbf{MLP}: Multi-layer perceptron. It uses no hypergraph structural information at all and only applies layer-wise non-linear transformations to node features, serving as the most basic baseline for measuring whether structural information yields any gain.
+    \item \textbf{CEGCN}\cite{chien2022you,zhou2006learning,kipf2017semi}: A clique-expansion-based method. Each hyperedge is first converted into a clique over its incident nodes, turning the hypergraph into a pairwise graph, on which GCN is then applied to learn node representations.
+    \item \textbf{CEGAT}\cite{chien2022you,zhou2006learning,velickovic2018graph}: Also converts the hypergraph into a pairwise graph via clique expansion, but employs GAT (graph attention network) to model the importance weights among nodes within a clique, so that the contributions of different neighbours are distinguished.
+    
+    \vspace{0.5em} % dashed grouping
+    
+    \item \textbf{HGNN}\cite{feng2019hypergraph}: Extends spectral convolution to hypergraphs. It exploits the hypergraph Laplacian and approximates the spectral filter with truncated Chebyshev polynomials, thereby capturing high-order correlations in complex data.
+    \item \textbf{HyperGCN}\cite{yadati2019hypergcn}: Approximates each hyperedge with pairwise edges connecting the vertices inside it, reducing hypergraph learning to graph learning on the approximated graph.
+    \item \textbf{HCHA}\cite{bai2021hypergraph}: Proposes end-to-end trainable hypergraph convolution and hypergraph attention operators. The convolution propagates information using high-order relations and the local clustering structure, while the attention dynamically adjusts hyperedge connections to aggregate task-relevant information.
+    \item \textbf{LEGCN}\cite{yang2022semi}: Based on line expansion, it treats vertex--hyperedge pairs as nodes of a simple graph, thereby bijectively converting a hypergraph into a simple graph. Existing graph learning algorithms can thus be applied directly to hypergraphs without losing the symmetric co-occurrence structure.
+    \item \textbf{HyperND}\cite{prokopchik2022nonlinear}: Constructs a non-linear diffusion process on the hypergraph that propagates features and labels along the hypergraph structure. The diffusion involves several non-linearities to strengthen the modelling capacity; its limit points serve as node embeddings, which are fed to a linear model for prediction.
+    \item \textbf{PhenomNN}\cite{wang2023from}: Based on a family of expressive parametrized hypergraph-regularized energy functions, it defines node embeddings as the minimizers of these energies and jointly trains them with a parametrized classifier through supervised bilevel optimization.
+    \item \textbf{SheafHyperGNN}\cite{duta2023sheaf}: Introduces the cellular sheaf framework to hypergraphs, modelling complex dynamics while preserving high-order connectivity. It generalizes the commonly used hypergraph Laplacian to a sheaf-structured version and constructs two neural networks that can infer and process sheaf structures on hypergraphs.
+    \item \textbf{HJRL}\cite{yan2024hypergraph}: Proposes cross expansion, which converts both hypervertices and hyperedges into vertices of a standard graph and jointly embeds them in a shared representation space, while a hypergraph reconstruction objective preserves structural information.
+    \item \textbf{DPHGNN}\cite{saxena2024dphgnn}: A hybrid framework for resource-constrained hypergraph scenarios. It introduces equivariant operator learning to capture low-order semantics, adopts a static update layer to provide spectral bias and relational features, and a dynamic update layer that fuses explicitly aggregated features into hypergraph message passing.
+    \item \textbf{TF-HNN}\cite{tang2025training}: The first model that decouples hypergraph structure processing from model training, proposing a training-free message passing module, TF-MP-Module. The module removes learnable parameters and non-linear activations and compresses multi-layer propagation into a single step, thereby improving training efficiency.
+    
+    \vspace{0.5em} % dashed grouping
+    
+    \item \textbf{HNHN}\cite{dong2020hnhn}: A hypergraph convolutional network that applies non-linear activations on both hypernodes and hyperedges, together with a normalization scheme, so that the importance of high-order hyperedges and high-degree vertices can be adjusted flexibly per dataset.
+    \item \textbf{UniGNN}\cite{huang2021unignn}: A unified message passing framework that generalizes standard GNNs to hypergraphs. It first aggregates the incident vertices with a permutation-invariant function to obtain hyperedge representations, and then aggregates the incident hyperedge representations to update each vertex.
+    \item \textbf{AllSetTransformer}\cite{chien2022you,lee2019set}: Implements each layer as a composition of two multiset functions and incorporates the Set Transformer, which yields greater modelling flexibility and expressive power.
+    \item \textbf{ED-HNN}\cite{wang2023equivariant}: Designs an architecture that approximates arbitrary continuous, permutation-equivariant hypergraph diffusion operators. It is realized by star expansion (a bipartite representation) combined with standard message passing neural networks, and supports scalable training with weights shared across layers.
+    \item \textbf{HyperGT}\cite{liu2024hypergraph}: A Transformer-based HNN for capturing global correlations between nodes and hyperedges. It introduces incidence-matrix-based positional encoding and a structural regularization term to preserve local structure, jointly modelling global interactions and local connectivity patterns.
+    
+    \vspace{0.5em} % dashed grouping
+    
+    \item \textbf{EHNN}\cite{kim2022equivariant}: The first framework that realizes general hypergraph-equivariant GNNs. It establishes a link between sparse hypergraphs and dense fixed-order tensors, designs maximally expressive equivariant linear layers, and guarantees scalability and generalization to arbitrary hyperedge orders through hypernetwork parameter sharing.
+    \item \textbf{T-HyperGNN}\cite{wang2024thypergnns,pena2023thgsp}: Integrates tensor hypergraph signal processing (t-HGSP) and encodes the hypergraph structure with tensors. Node interactions are modelled by multiplicative interaction tensors, lifting aggregation from linear operations to high-order polynomial mappings, and tensor sparsity is exploited for efficient tensor message passing.
+\end{itemize}

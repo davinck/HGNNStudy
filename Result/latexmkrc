@@ -1,0 +1,4 @@
+# latexmk 配置：让 latexmk 默认用 xelatex + biber 构建本目录的 main.tex
+# $pdf_mode = 5 -> 用 xelatex 生成 PDF；需要时 latexmk 会自动调用 biber 生成 main.bbl
+$pdf_mode = 5;
+$bibtex_use = 2;

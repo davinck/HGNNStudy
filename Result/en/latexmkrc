@@ -1,0 +1,3 @@
+# latexmk 配置：让 latexmk 默认用 xelatex + biber 构建本目录的 main_en.tex
+$pdf_mode = 5;
+$bibtex_use = 2;

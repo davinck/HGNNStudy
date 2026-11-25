@@ -1,10 +1,10 @@
-% task1.tex —— Task 1：代码复现情况（由主文件 Reproduction.tex 引入，请勿单独编译）
+% task1.tex —— Task 1：代码复现情况
 
 \section*{Task 1：代码复现情况}
-实验设置。本文复现DHG−Bench的节点分类任务，覆盖Table 1与Table A5中的全部20种方法与13个数据集，均基于官方开源代码，按50\%/25\%/25\%随机划分训练/验证/测试集，并以随机种子0−−4重复运行5次，报告测试准确率的均值与标准差（%）。训练采用全批量方式，损失函数为负对数似然，优化器为Adam，学习率、层数、隐藏维度、dropout与训练轮数等超参一律沿用作者按数据集调优后发布的配置（lib_yamls/node_yamls/），未做额外调参；
-官方未提供对应配置的组合（如UniGNN、HJRL、SheafHyperGNN、DPHGNN与T−HyperGNN在部分数据集上）沿用该方法的默认超参，并在结果表中单独标注。全部实验在单张NVIDIAGeForceRTX 3060LaptopGPU（6GB）上完成，软件环境为PyTorch2.2.2（CUDA12.1）与PyTorchGeometric2.6.1。
+实验设置：本文复现DHG−Bench的节点分类任务，覆盖Table 1与Table A5中的全部20种方法与13个数据集，均基于官方开源代码，按50\%/25\%/25\%随机划分训练/验证/测试集，并以随机种子重复运行5次，报告测试准确率的均值与标准差（\%）。训练采用全批量方式，损失函数为负对数似然，优化器为Adam，学习率、层数、隐藏维度、dropout与训练轮数等超参一律沿用作者按数据集调优后发布的配置（lib\_yamls/node\_yamls/），未做额外调参；官方未提供对应配置的组合沿用该方法的默认超参，并在结果表中单独标注。
 \vspace{3em} 
-% ==================== 表格开始 ====================
+
+% Cora
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -42,6 +42,7 @@
 
 \vspace{3em} 
 
+% Pubmed
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -79,6 +80,7 @@
 
 \vspace{3em} 
 
+% Cora-CA
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -116,6 +118,7 @@
 
 \vspace{3em}
 
+% DBLP-CA
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -153,6 +156,7 @@
 
 \vspace{3em}
 
+% Walmart
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -172,7 +176,7 @@
         Walmart & PhenomNN & OOM & \(61.24 \pm 0.57\) & \\
         Walmart & SheafHyperGNN & OOM & \(68.95 \pm 0.31\) & 默认参数 \\
         Walmart & HJRL & OOM & OOM & 默认参数内存溢出 \\
-        Walmart & DPHGNN & OOM & OOM & 默认参数显存溢出 \\
+        Walmart & DPHGNN & OOM & OOM & 默认参数内存溢出 \\
         Walmart & TF-HNN & \(77.04 \pm 0.12\) & \(77.64 \pm 0.18\) & \\
         \cdashline{1-5}
         Walmart & HNHN & \(65.21 \pm 0.28\) & \(65.56 \pm 0.14\) & \\
@@ -190,6 +194,7 @@
 
 \vspace{3em}
 
+% Trivago
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -209,7 +214,7 @@
         Trivago & PhenomNN & OOM & \(9.14 \pm 0.16\) & 默认参数 \\
         Trivago & SheafHyperGNN & OOM & \(24.50 \pm 5.05\) & 默认参数 \\
         Trivago & HJRL & OOM & OOM & 默认参数内存溢出 \\
-        Trivago & DPHGNN & OOM & OOM & 默认参数显存溢出 \\
+        Trivago & DPHGNN & OOM & OOM & 默认参数内存溢出 \\
         Trivago & TF-HNN & \(90.79 \pm 0.79\) & \(91.21 \pm 0.70\) & \\
         \cdashline{1-5}
         Trivago & HNHN & \(53.75 \pm 1.43\) & \(53.00 \pm 0.60\) & \\
@@ -227,6 +232,7 @@
 
 \vspace{3em}
 
+% Actor
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -264,6 +270,7 @@
 
 \vspace{3em}
 
+% Gamers
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -301,6 +308,7 @@
 
 \vspace{3em}
 
+% Pokec
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -338,6 +346,7 @@
 
 \vspace{3em} 
 
+% Yelp
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -347,34 +356,37 @@
         \midrule
         Yelp & MLP & \(31.84 \pm 0.45\) & \(31.82 \pm 0.55\) & \\
         Yelp & CEGCN & OOM & OOM & 内存溢出 \\
-        Yelp & CEGAT & OOM & OOM & 默认参数显存溢出 \\
+        Yelp & CEGAT & OOM & OOM & 默认参数内存溢出 \\
         \cdashline{1-5}
         Yelp & HGNN & \(33.71 \pm 0.24\) & \(33.71 \pm 0.24\) & \\
         Yelp & HyperGCN & \(29.29 \pm 0.55\) & \(21.48 \pm 6.98\) & 偏低 \\
         Yelp & HCHA & \(33.13 \pm 0.23\) & \(33.13 \pm 0.23\) & \\
-        Yelp & LEGCN & OOM & OOM & 默认参数 \\
+        Yelp & LEGCN & OOM & OOM & 配置文件无参数 \\
         Yelp & HyperND & OOM & OOM & 内存溢出 \\
         Yelp & PhenomNN & OOM & OOM & 内存溢出 \\
-        Yelp & SheafHyperGNN & OOM & OOM & 默认参数显存溢出 \\
-        Yelp & HJRL & OOM & OOM & 默认参数 \\
-        Yelp & DPHGNN & OOM & OOM & 默认参数显存溢出 \\
+        Yelp & SheafHyperGNN & OOM & OOM & 默认参数内存溢出 \\
+        Yelp & HJRL & OOM & OOM & 配置文件无参数 \\
+        Yelp & DPHGNN & OOM & OOM & 默认参数内存溢出 \\
         Yelp & TF-HNN & \(35.16 \pm 0.54\) & \(34.46 \pm 0.89\) & \\
         \cdashline{1-5}
         Yelp & HNHN & \(25.86 \pm 0.63\) & \(25.86 \pm 0.63\) & \\
         Yelp & UniGNN & \(31.09 \pm 0.61\) & \(31.08 \pm 0.72\) & \\
         Yelp & AllSetTransformer & \(33.18 \pm 0.88\) & \(33.51 \pm 0.42\) & \\
-        Yelp & ED-HNN & \(34.84 \pm 0.93\) & OOM & 内存溢出 \\
-        Yelp & HyperGT & OOM & OOM & 默认参数显存溢出 \\
+        Yelp & ED-HNN & \(34.84 \pm 0.93\) & OOM & 配置文件无参数 \\
+        Yelp & HyperGT & OOM & OOM & 默认参数内存溢出 \\
         \cdashline{1-5}
-        Yelp & EHNN & \(34.09 \pm 3.19\) & \(32.79 \pm 2.53\) & 内存溢出 \\
+        Yelp & EHNN & \(34.09 \pm 3.19\) & \(32.79 \pm 2.53\) &  \\
         Yelp & T-HyperGNN & OOM & OOM & 默认参数内存溢出 \\
         \bottomrule
     \end{tabular}
     \caption{Yelp 数据集分类结果}
+    \vspace{0.3em} 
+    \par\noindent 注：在Yelp数据集上复现LEGCN、HJRL和ED-HNN这三个模型本机会死机
 \end{table}
 
-\vspace{3em}
+\vspace{1.7em}
 
+% NTU2012
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -412,6 +424,7 @@
 
 \vspace{3em}
 
+% ModelNet40
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -449,6 +462,7 @@
 
 \vspace{3em}
 
+% Ratings
 \begin{table}[H]
     \centering \small
     \renewcommand{\arraystretch}{1.12} 
@@ -482,4 +496,6 @@
         \bottomrule
     \end{tabular}
     \caption{Ratings 数据集分类结果}
+
+
 \end{table}

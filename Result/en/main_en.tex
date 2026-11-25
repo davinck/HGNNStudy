@@ -1,0 +1,67 @@
+% !TeX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{booktabs,tabularx,enumitem,xurl,hyperref}
+\usepackage{float}    % force fixed position [H]
+\usepackage{caption}
+\usepackage{titlesec}
+
+% ================= Bibliography configuration =================
+\usepackage[backend=biber, style=numeric-comp, giveninits=true, maxbibnames=99, sortcites=true]{biblatex}
+\addbibresource{refs.bib}
+% =============================================================
+
+\captionsetup[table]{skip=2pt, font=small}
+
+% Compress the large default spacing around floats
+\setlength{\intextsep}{0pt}
+\setlength{\textfloatsep}{0pt}
+
+\definecolor{accent}{HTML}{1B526C}
+\hypersetup{colorlinks=true,urlcolor=accent,citecolor=accent,linkcolor=accent}
+\pagestyle{plain}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\linespread{1.10}
+\setlist[itemize]{leftmargin=1.5em,itemsep=4pt,topsep=3pt}
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}
+\titlespacing*{\section}{0pt}{13pt}{5pt}
+
+% Group separator inside the result tables. Replaces \cdashline from arydshln:
+% with the current LaTeX kernel that package draws its rules on top of the
+% following row, so a light grey thin rule is used instead. \specialrule is used
+% (with zero extra separation) so the row spacing is exactly as before.
+\newcommand*{\grprule}{%
+  \arrayrulecolor{gray!60}\specialrule{0.3pt}{0pt}{0pt}\arrayrulecolor{black}}
+
+\title{HGNNStudy: Reproduction Notes on Hypergraph Node Classification}
+\author{Name: \underline{\hspace{1cm}Liu Sikai\hspace{1cm}}}\date{}
+
+% Superscript numeric citations, matching the Chinese version.
+% Body copied verbatim from numeric-comp.cbx; only the wrapper is changed
+% from \mkbibbrackets to a superscripted bracketed form.
+\newcommand*{\mkbibsuperscriptbr}[1]{\mkbibsuperscript{\mkbibbrackets{#1}}}
+\DeclareCiteCommand{\cite}[\mkbibsuperscriptbr]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+\begin{document}
+\maketitle
+\vspace{-1.4em}
+
+% Sections
+\input{task_1_Reproduction_en}
+\clearpage
+\input{task_2_Data_en}
+\input{task_3_Baseline_en}
+\input{task_4_info_en}
+
+% References
+\printbibliography[title=References]
+
+\end{document}
